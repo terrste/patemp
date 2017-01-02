@@ -1,0 +1,145 @@
+<head>
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body> 
+</body>
+
+<template name="ApplicationLayout">
+	{{> yield "header"}}
+	{{> yield "main"}}	
+</template>
+
+<template name="navbar">
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <ul class="nav navbar-nav">
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	          	<li><a href="/">Home</a></li>	            
+	            <li role="separator" class="divider"></li>
+	            <li><a href="/configure_session">Configure session</a></li>
+	            <li><a href="/edit_table/new">New table</a></li>
+	            <li><a href="/todo_list">Todo list</a></li>
+	            
+	            <li role="separator" class="divider"></li>
+	            <li><a href="/configure_players">Configure players</a></li>
+	            <li><a href="/edit_player">Edit player</a></li>
+
+	            <li role="separator" class="divider"></li>
+	            <li><a href="/active_tables">Active tables</a></li>
+	            <li><a href="/current_table">Current table</a></li>
+	            <li><a href="/table_hands">Table hands</a></li>
+	            <li><a href="/hands_list">Hands list</a></li>
+	          </ul>
+	        </li>
+	        
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	      <li>{{> loginButtons align="right"}}</li>
+	      </ul>
+	  </div>
+	</nav>
+</template>
+
+<template name="todo_list">	
+	<div class="container">
+	 	<div class="jumbotron">
+		    <h1>{{labels.app_title}}</h1> 
+		    <h2>TODO LIST</h2>		    
+		</div>
+		<ol>
+			<li>Stabilire una lista di priorita, scaricare git</li>
+			<li>Resettare i dati in sessione, altrimenti viene inserito il colore anche quando si fa poker</li>
+			<li>Add a table and switch between tables</li>
+			<li>Add process of creation of a table - verificare</li>
+			<li><del>Enable deletion of a hand - verificare</del></li>
+			<li>Deploy</li>
+			<li>Abbellire, togliere i jumbotron</li>
+			<li>Mettere gli avatar reali e gli user veri e le sigle per ogni giocatore per creare il nome del tavolo</li>
+			<li>controllare il numero di giocatori nel tavolo</li>
+			<li>fare il conteggio dei punti e abbozzare le classifiche</li>
+			<li>Eliminare un pò di log</li>
+			<li>gestire il bottone e l'azione del tavolo in base allo stato del tavolo</li>
+			<li>consentire di finire un tavolo e cambiare lo stato. Possibilita di riaprire il tavolo</li>
+			<li><del>Gestire la diversita dei punti e il valore del punto in modo da stabilire una graduatoria</del></li>
+			<li><del>assegnare punti diversi per piatto o doppio piatto, fare in modo di poter stabilire 2 o piu vincitori</del></li>
+			<li><del>Add -non visto- alla lista dei punti e se clicco questo, non devo passare per il valore del punto. Gestire tutto di conseguenza</del></li>
+			<li></li>
+			<li>mettere l'inserimento in un metodo e verificare che siano valorizzati tutti i parametri. <del>Altrimenti non inserire e evitare i loop di inserimenti</del></li>
+			<li>Azzerare DB e riprovare</li>
+			<li><div class="btn btn-primary js-route-redirect">home</div></li>
+			<li>In addition when a player wins a hand with a point greater than full-house of ten, we play a couple of hands of stud poker. When we play a hand of stud poker, sometimes, depending of what type of game we play, we need to register more than one winner for every hands.</li>
+			<li>Se il tavolo e in running non si può cambiare la lista dei giocatori presenti nel tavolo</li>
+			<li>il tavolo dev'essere in running da subito, non dovendo premere strt ogni volta</li>
+			<li>Sistemare i metodi degli events dell'inserimento del punto</li>
+			<li><del>Dare valore ai punti e mettere stellina se punto maggiore di full vestito</del></li>
+			<li>This i poker tournamnet pitch... First of all, this isn't a game. this is...The aim of the app is records the winner of every hand in a optimized way, reducing the number of actions that the user has to complete to input the data in the system. The app allow to every user to record the point and every user in every moment can see the result, the total point, the grade in classification of the day and the total point in year. There are several classifications. I know that this project isn't so ambitious, but for me at the moment is very useful and I hope very appreciated from my friends. Last but not least I think and also hope, that is realizable during the time of course. In addition I want tath the experience be customized for logged user, so that for example if there is already an active table, when the user log in the app, the defalut view must be the current table. </li>
+		</ol>
+	</div>	
+</template>
+
+<template name="landing_page">
+	<div class="container">
+	  <div class="jumbotron">
+	    <h1>PA Season</h1> 
+	    <p>Play with your friends</p>
+	    <p> <a href="/play">...Play!</a> </p>
+	  </div>
+	</div>	
+</template>
+
+<template name="configure_session">	
+	<div class="container">
+		 <div class="jumbotron">
+		    <h1>Configure new session</h1> 
+		    
+		  </div>
+	</div>	
+</template>
+
+<template name="configure_players">	
+	<div class="container">
+		 <div class="jumbotron">
+		    <h1>Configure players</h1> 
+		    
+		  </div>
+		  {{#each users}}
+			{{> available_user}}
+		   {{/each}}
+	</div>	
+</template>
+
+
+<template name="edit_player">	
+	<div class="container">
+		<div class="jumbotron">
+		    <h1>Edit player</h1> 	
+		    <img src="/{{profile.avatar}}" class="avatar_img">		    
+		</div>
+	</div>	
+</template>
+
+<template name="available_user">
+	<a href="hands_list/{{_id}}">
+		<div class="user_avatar">			
+			<div>
+				<img src="/{{profile.avatar}}" class="avatar_img">	
+				<div>{{getUsername _id}}</div>		
+			</div>			
+		</div>
+	</a>
+</template>
+
+
+
+
+
+
+
+
+
+
+
