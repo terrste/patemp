@@ -1,0 +1,14 @@
+<template name="point_heights">	
+	{{#each point_heights}}
+	  	<div class="col-xs-6">
+	  		<a href="" class="js-set-point" data-id="{{id}}">
+			<div class="point_height_button">			
+				<div class="">
+					<img src="/img/{{img}}" class="point_height_image">	
+					<div>{{name}}</div>					
+				</div>					
+			</div>
+			</a>
+	  	</div>
+	{{/each}}
+</template>

@@ -1,0 +1,29 @@
+<template name="table_hands">
+	<div class="container">
+		<div class="jumbotron">
+		    <h1>Table hands</h1>    
+		</div>
+	</div>
+	<a href="/current_table" class="btn btn-primary">current table</a>
+	{{#each hands}}
+		{{#let plateId=_id}}
+		{{#let rowIndex=@index}}
+		{{#each winners}}
+
+	  	<div class="row">
+	  		<div class="col-xs-2">
+	  			<div type="button" class="btn btn-danger js-remove-table-hand" data-id="{{plateId}}">remove</div>
+	  		</div>
+	  		<div class="col-xs-1">{{rowIndex}}</div>
+	  		<div class="col-xs-2"><img src="/{{user.profile.avatar}}" class="hands_avatar_img" title="{{user.profile.username}}"></div>		
+	  		<div class="col-xs-6">{{hand.name}}  ({{point_suit.name}}  {{point_height.name}})</div>	
+	  		{{#if isStud hand point_height}}
+		        <div class="col-xs-1">X</div>
+		    {{/if}}		
+	  		
+	  	</div>
+	  	{{/each}}
+	  	{{/let}}
+	  	{{/let}}
+	 {{/each}}
+</template>

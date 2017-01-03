@@ -1,0 +1,63 @@
+<template name="view_winner">		
+		<div class="user_avatar">
+			{{winner.user.profile.username}} {{winner.hand.name}} {{winner.point_height.name}}
+			<div class="bg-success">{{userId}}
+				<img src="/{{winner.user.profile.avatar}}" class="avatar_img">			
+			</div> 
+		</div>
+		<a href="/current_table" type="button" class="btn btn-primary">continue</a>
+</template>
+
+<template name="telesina_list">
+	
+		<h1>{{table.name}}</h1>
+
+		{{#each telesine}}
+		  	<div class="col-xs-6">
+		  		<a href="/telesina_winners/{{id}}">
+		  		<div class="hand_button">			
+					<div class="">
+						<img src="/img/{{img}}" class="hand_img">	
+						<div>{{name}} {{code}}  {{plates}}</div>					
+					</div>					
+				</div>
+			  		<!-- <div>			
+						<div class="">
+							<div>{{code}}</div>		
+							<div>{{name}}</div>		
+							<div>{{plates}}</div>			
+						</div>					
+					</div> -->
+				</a>
+		  	</div>
+		  	{{/each}}
+</template>
+
+<template name="suits_list">
+	
+		{{#each suits}}
+		  	<div class="col-xs-6">		  		
+
+				{{#if isPointCo}}
+			       	<a href="" class="js-set-point" data-id="{{id}}">
+						<div class="hand_button">			
+							<div class="">
+								<img src="/img/{{img}}" class="hand_img">	
+								<div>{{name}}</div>					
+							</div>					
+						</div>
+						</a>
+			    {{else}}			 			        
+			          <a href="/point_color_height/{{id}}">
+				        <div class="hand_button">			
+							<div class="">
+								<img src="/img/{{img}}" class="hand_img">
+								<div>{{name}}</div>			
+							</div>					
+						</div>
+					</a>
+			    {{/if}}
+
+		  	</div>
+		  	{{/each}}
+</template>
